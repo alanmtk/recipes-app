@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RecipesList = ({ recipes }) => (
-  <table>
+  <table className="RecipesList mb">
     <thead>
       <tr>
         <th>Receta</th>
@@ -16,7 +16,7 @@ const RecipesList = ({ recipes }) => (
           <td>
             <Link to={`/recetas/${id}`}>{name}</Link>
           </td>
-          <td>{rate}</td>
+          <td>{rate || 'Sin valoraciones'}</td>
         </tr>
       ))}
     </tbody>

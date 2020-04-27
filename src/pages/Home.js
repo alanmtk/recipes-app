@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import SearchBar from '../components/SearchBar';
 import RecipesList from '../components/RecipesList';
 
 const Home = () => {
-  const recipes = [
-    { id: 1, name: 'Arroz con pollo', rate: 4.3 },
-    { id: 2, name: 'Brownie', rate: 10 },
-    { id: 3, name: 'Ñoquis de batata', rate: 6 },
-  ];
+  const recipes = useStoreState((state) => state.recipes);
+  const searchResults = useStoreState((state) => state.searchResults);
+  const fetchRecipes = useStoreActions((actions) => actions.fetchRecipes);
+
+  useEffect(() => {
+    fetchRecipes();
+  }, []);
+
   return (
-    <>
+    <div>
       <SearchBar />
-      <Link to="/ranking">Ver valoraciones</Link>
-      <RecipesList recipes={recipes} />
-    </>
+      <Link className="block mb" to="/ranking">Ver valoraciones</Link>
+      <RecipesList recipes={searchResults.length ? searchResults : recipes} />
+    </div>
   );
 };
 

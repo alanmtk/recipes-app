@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StepsList = ({ steps }) => (
-  <ul>
-    {steps.map((step) => (
-      <li>{step}</li>
-    ))}
-  </ul>
+  <div className="mb">
+    <ul>
+      {steps.map((step) => (
+        <li>{step}</li>
+      ))}
+    </ul>
+  </div>
 );
 
 StepsList.propTypes = {

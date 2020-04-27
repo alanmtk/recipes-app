@@ -1,33 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DinerSelector from './DinerSelector';
 
 const IngredientsList = ({ ingredients }) => {
   const [diners, setDiners] = useState(1);
 
   return (
-    <>
-      Para
-      {' '}
-      <input
-        type="number"
-        min={1}
-        defaultValue={diners}
-        onChange={({ target: { value } }) => setDiners(value)}
-      />
-      {' '}
-      personas
+    <div className="mb">
+      <DinerSelector diners={diners} handleChange={setDiners} />
       <ul>
         {ingredients.map(({ amount, unit, name }) => (
-          <li>
-            {amount * diners}
-            {' '}
-            {unit}
-            {' '}
-            {name}
-          </li>
+          <li key={name}>{`${amount * diners} ${unit} ${name}`}</li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
